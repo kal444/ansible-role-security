@@ -1,0 +1,31 @@
+---
+- block:
+  - name: Install unattended upgrades package.
+    apt: name=unattended-upgrades state=present
+
+  - name: Copy unattended-upgrades configuration files in place.
+    template:
+      src: "../templates/{{ item }}.j2"
+      dest: "/etc/apt/apt.conf.d/{{ item }}"
+      owner: root
+      group: root
+      mode: 0644
+    with_items:
+      - 10periodic
+      - 50unattended-upgrades
+  when: ansible_os_family == 'Debian'
+
+- block:
+  - name: Install yum-cron.
+    yum: name=yum-cron state=present
+
+  - name: Configure autoupdates (RHEL 7).
+    lineinfile:
+      dest: "/etc/yum/yum-cron.conf"
+      regexp: '^apply_updates = .+'
+      line: 'apply_updates = yes'
+    when: ansible_distribution_major_version | int == 7
+
+  - name: Ensure yum-cron is running and enabled on boot.
+    service: name=yum-cron state=started enabled=yes
+  when: ansible_os_family == 'RedHat'

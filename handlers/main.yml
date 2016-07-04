@@ -1,2 +1,4 @@
 ---
 # handlers file for ansible-role-security
+- name: restart ssh
+  service: "name={{ security_sshd_name }} state=restarted"
