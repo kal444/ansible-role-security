@@ -1,11 +1,11 @@
 ---
-- name: ensure log watcher is installed
+- name: ensure log watcher is installed.
   apt: name=logwatch state=present
   when: ansible_os_family == 'Debian'
 
-- name: ensure log watcher is installed
+- name: ensure log watcher is installed.
   yum: name=logwatch state=present
   when: ansible_os_family == 'RedHat'
 
-- name: setup log watcher mailer
+- name: setup log watcher mailer.
   template: src=etc/cron.daily/00logwatch.j2 dest=/etc/cron.daily/00logwatch owner=root group=root mode=0755
