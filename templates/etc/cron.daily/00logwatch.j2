@@ -4,5 +4,6 @@
 test -x /usr/share/logwatch/scripts/logwatch.pl || exit 0
 
 #execute
-/usr/sbin/logwatch --output mail --mailto {{ security_admin_email }} --detail high
+#/usr/sbin/logwatch --format text --output mail --mailto {{ security_admin_email }} --detail high
+/usr/sbin/logwatch --format html --output mail --mailto {{ security_admin_email }} --detail low
 
