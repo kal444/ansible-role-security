@@ -12,4 +12,6 @@
 - include: logwatch.yml
   when: security_logwatch_enabled
 
+- include: mail.yml
+
 - include: ssh.yml

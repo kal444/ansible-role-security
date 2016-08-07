@@ -1,0 +1,8 @@
+---
+- name: Updat aliases to forward root mail
+  lineinfile:
+    dest: /etc/aliases
+    regexp: ^root:
+    line: "root: {{ security_admin_email }}"
+    state: present
+  notify: reload aliases
