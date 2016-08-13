@@ -1,5 +1,7 @@
 ---
 # defaults file for ansible-role-security
+security_cron_enabled: true
+
 security_autoupdate_enabled: true
 
 security_fail2ban_enabled: true

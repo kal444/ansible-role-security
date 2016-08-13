@@ -1,0 +1,11 @@
+---
+- name: Install cron
+  apt: name=cron state=present
+  when: ansible_os_family == 'Debian'
+
+- name: Install cron
+  yum: name=cronie state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure cron is running and enabled on boot.
+  service: name={{ security_cron_name }} state=started enabled=yes
