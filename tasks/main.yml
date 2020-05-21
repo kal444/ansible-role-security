@@ -6,7 +6,7 @@
 - include: cron.yml
   when: security_cron_enabled
 
-- include: autoupdate.yml
+- include: autoupdate-{{ ansible_os_family }}.yml
   when: security_autoupdate_enabled
 
 - include: fail2ban.yml
