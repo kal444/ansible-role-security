@@ -5,3 +5,6 @@
 
 - name: restart ssh
   service: name="{{ security_sshd_name }}" state=restarted
+
+- name: reload unattended-upgrades
+  service: name=unattended-upgrades state=restarted
